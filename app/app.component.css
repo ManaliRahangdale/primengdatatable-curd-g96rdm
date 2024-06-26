@@ -1,0 +1,9 @@
+p {
+  font-family: Montserrat;
+}
+.displayNone{
+  display:none;
+}
+.displayInlineBlock{
+  display:inline-block;
+}

@@ -1,0 +1,181 @@
+<h2>Products</h2>
+<hr />
+<p-table [value]="products">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>product Name</th>
+      <th>Product Price</th>
+      <th>Product Category</th>
+      <th>
+        <button
+          type="button"
+          (click)="showDialog()"
+          pButton
+          label="Create"
+        ></button>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-products let-i="rowIndex">
+    <tr>
+      <td contenteditable="false">{{ products.name }}</td>
+      <td>{{ products.value }}</td>
+      <td>{{ products.Pcategory }}</td>
+      <td>
+        <div [class]="'displayInlineBlock'">
+          <button
+            type="button"
+            pButton
+            label="Update"
+            (click)="editProduct(i)"
+          ></button>
+          <button
+            type="button"
+            pButton
+            label="Delete"
+            (click)="deleteProduct(i)"
+            class="ui-button-danger"
+          ></button>
+          <!-- <button
+            type="button"
+            pButton
+            label="Edit Row"
+            (click)="editRow($event)"
+            class="ui-button-success"
+          ></button> -->
+        </div>
+        <div [class]="'displayNone'">
+          <button
+            type="button"
+            pButton
+            label="Update"
+            (click)="updateData($event)"
+            class="ui-button-success"
+          ></button>
+          <button
+            type="button"
+            pButton
+            label="Cancel"
+            (click)="cancel($event)"
+            class="ui-button-danger"
+          ></button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<p-dialog header="Add Product" [(visible)]="display">
+  <form #f (submit)="addProduct(f)" novalidate>
+    <div class="ui-g-12 ui-md-12">
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+        <input
+          type="text"
+          pInputText
+          placeholder="ProductName"
+          name="ProductName"
+        />
+      </div>
+    </div>
+    <div class="ui-g-12 ui-md-12">
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="fa fa-globe"></i></span>
+        <input
+          type="text"
+          pInputText
+          placeholder="Product Price"
+          name="Pprice"
+        />
+      </div>
+    </div>
+    <div class="ui-g-12 ui-md-12">
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="fa fa-globe"></i></span>
+        <input
+          type="text"
+          pInputText
+          placeholder="Product category"
+          name="Pcategory"
+        />
+      </div>
+    </div>
+    <p-footer>
+      <button
+        type="submit"
+        pButton
+        class="ui-button-success"
+        label="ADD"
+      ></button>
+    </p-footer>
+  </form>
+</p-dialog>
+<p-dialog header="Update User" [(visible)]="editPopUp">
+  <form #p (submit)="updateProduct(p)" novalidate>
+    <div class="ui-g-12 ui-md-12">
+      <div class="ui-inputgroup">
+        <input type="number" name="index" value="{{ index }}" [hidden]="true" />
+      </div>
+    </div>
+    <div class="ui-g-12 ui-md-12">
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+        <input
+          type="text"
+          pInputText
+          placeholder="ProductName"
+          name="ProductName"
+          value="{{ updateProductName }}"
+        />
+      </div>
+    </div>
+    <div class="ui-g-12 ui-md-12">
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="fa fa-globe"></i></span>
+        <input
+          type="text"
+          pInputText
+          placeholder="Email ID"
+          name="Pprice"
+          value="{{ updateProductPrice }}"
+        />
+      </div>
+    </div>
+    <div class="ui-g-12 ui-md-12">
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="fa fa-globe"></i></span>
+        <input
+          type="text"
+          pInputText
+          placeholder="Product Category"
+          name="Pcategory"
+          value="{{ updateProductCategory }}"
+        />
+      </div>
+    </div>
+    <p-footer>
+      <button
+        type="submit"
+        pButton
+        class="ui-button-success"
+        label="Update"
+      ></button>
+    </p-footer>
+  </form>
+</p-dialog>
+
+<h1>Chart</h1>
+ <ngx-charts-bar-vertical
+              [view]="view"
+              [scheme]="colorScheme"
+              [results]="newData"
+              [gradient]="gradient"
+              [xAxis]="showXAxis"
+              [yAxis]="showYAxis"
+              [legend]="showLegend"
+              [showXAxisLabel]="showXAxisLabel"
+              [showYAxisLabel]="showYAxisLabel"
+              [xAxisLabel]="xAxisLabel"
+              [yAxisLabel]="yAxisLabel"
+              (select)="onSelect($event)">
+</ngx-charts-bar-vertical>
+<hr>
